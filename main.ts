@@ -1,10 +1,13 @@
-// main.ts — placeholder edition for make.fun news-image-20261125.
+// main.ts — refreshed edition for make.fun news-image-20261125.
 //
 // Draws a 1024x1024 PNG summing up 25 November 2026 world news.
-// THIS SKELETON carries clearly-marked PLACEHOLDER story text only.
-// The refresh run rewrites every story line with verified 25 November
-// 2026 news before submission. Node stdlib only, no network,
-// deterministic: two runs write identical bytes.
+// All story text verified against primary sources on 26 November 2026:
+// markets (AP closing figures), Shenzhou-24 (Xinhua/CMSA), Hormuz
+// (Reuters, Iranian state-media claim), Solomon Islands treaty
+// (Australian PM's office/Reuters), Macy's parade (Reuters/AP).
+// Node stdlib only, no network, deterministic: two runs write
+// identical bytes. Text uses the 5x7 font's charset only:
+// A-Z, 0-9, space, hyphen.
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
@@ -175,19 +178,26 @@ hline(56, 44, W - 112, GOLD);
 drawText("25 NOVEMBER 2026", W / 2, 72, 8, INK, true);
 drawText("ONE DAY IN ONE IMAGE", W / 2, 168, 3, GOLD, true);
 hline(56, 216, W - 112, GOLD);
-drawText("PLACEHOLDER EDITION", W / 2, 236, 2, MUTED, true);
+drawText("WEDNESDAY EDITION", W / 2, 236, 2, MUTED, true);
 
-// Five placeholder story rows.
+// Five verified story rows.
 const ROW_Y = 284;
 const ROW_H = 118;
 const ROW_GAP = 14;
-const KICKERS = ["STORY 1", "STORY 2", "STORY 3", "STORY 4", "STORY 5"];
+const KICKERS = ["MARKETS", "SPACE", "HORMUZ", "PACIFIC", "NEW YORK"];
 const HEADLINES = [
-  "PLACEHOLDER HEADLINE ONE",
-  "PLACEHOLDER HEADLINE TWO",
-  "PLACEHOLDER HEADLINE THREE",
-  "PLACEHOLDER HEADLINE FOUR",
-  "PLACEHOLDER HEADLINE FIVE",
+  "DOW ERASES 1100 POINT DROP TO RECORD",
+  "FIRST FOREIGN ASTRONAUT ABOARD TIANGONG",
+  "IRAN CLAIMS TWO TANKERS HIT MINES",
+  "SOLOMON ISLANDS SIGN AUSTRALIA PACT",
+  "MACYS PARADE POSTPONED FIRST TIME EVER",
+];
+const SUBLINES = [
+  "DOW UP 164 POINTS TO RECORD - NASDAQ DOWN 148",
+  "LAUNCHED 0818 - DOCKED 1156 BEIJING TIME",
+  "OIL UP AS SUPPLY FEARS GROW",
+  "NO FOREIGN BASE - TREATY SIGNED IN CANBERRA",
+  "100TH PARADE MOVED TO SATURDAY - STORM",
 ];
 
 for (let i = 0; i < 5; i++) {
@@ -239,12 +249,12 @@ for (let i = 0; i < 5; i++) {
   }
   drawText(KICKERS[i], 232, y + 18, 2, GOLD, false);
   drawText(HEADLINES[i], 232, y + 46, 3, INK, false);
-  drawText("VERIFIED NEWS GOES HERE", 232, y + 84, 2, MUTED, false);
+  drawText(SUBLINES[i], 232, y + 84, 2, MUTED, false);
 }
 
 // Footer.
 hline(56, 952, W - 112, GOLD);
-drawText("TEXT TO BE REFRESHED WITH COMPLETE 25 NOVEMBER 2026 NEWS", W / 2, 968, 2, MUTED, true);
+drawText("ALSO HUAWEI CONVICTED ON 10 OF 12 COUNTS IN NEW YORK", W / 2, 968, 2, MUTED, true);
 
 // ----------------------------------------------------------------- main
 
